@@ -6,7 +6,7 @@
       <!-- <div class="logo-box">
         <img class="logo" src="@/assets/icons/logo.png" alt="Logo" />
         <svg-icon icon-class="Logo" id="logo-text"></svg-icon>
-      </div> -->
+      </div> --> 
       <!-- 用户信息 -->
       <!-- 这里改成点击更改用户名 或者 -->
       <div class="user" >
