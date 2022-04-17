@@ -67,7 +67,7 @@
         <span style="color: #3b82f6">{{ todayCompleted }}</span> 项
       </p>
       <p class="text-info" v-else>今日暂无待办，创建待办后将在此展示</p>
-      <p class="text-info">已打卡 <span class="clock-in-num">{{ todayClockIn }}</span> 项</p>
+      <p class="text-info">习惯打卡 <span class="clock-in-num">{{ todayClockIn }}</span> 项</p>
     </div>
   </div>
 </template>

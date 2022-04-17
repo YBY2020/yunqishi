@@ -3,12 +3,13 @@
     <!-- 左侧导航栏 -->
     <div id="tab">
       <!-- Logo -->
-      <div class="logo-box">
-        <img class="logo" src="@/assets/icons/Logo.png" alt="Logo" />
+      <!-- <div class="logo-box">
+        <img class="logo" src="@/assets/icons/logo.png" alt="Logo" />
         <svg-icon icon-class="Logo" id="logo-text"></svg-icon>
-      </div>
+      </div> -->
       <!-- 用户信息 -->
-      <div class="user" @click="changeThemes('blue')">
+      <!-- 这里改成点击更改用户名 或者 -->
+      <div class="user" >
         <!-- 头像 -->
         <div class="profile">U</div>
         <!-- 用户名 -->
@@ -42,10 +43,10 @@
     <!-- 主视区 -->
     <div class="main">
       <!-- 头部 -->
-      <div class="header">
+      <!-- <div class="header">
         <input class="search" type="text" placeholder="搜索暂不可用" />
         <div class="message"></div>
-      </div>
+      </div> -->
       <!-- 页面 -->
       <router-view />
     </div>
@@ -76,12 +77,12 @@ export default {
           value: "设置",
           to: "/setting",
         },
-        {
+        /* {
           class: "about",
           iconClass: "icon-about",
           value: "关于",
           to: "/about",
-        },
+        }, */
       ],
       themeColors: {
         blue: [
@@ -141,27 +142,30 @@ export default {
           "#EF4444",
         ],
       },
+      /* 当然这里也许会加一个可以自己设置分类    如按精力消耗进行分类*/
+      /* 这里采用的四象限分类法是我个人觉得最实用的分类方法 */
       classLists: [
         {
-          name: "红色",
+          name: "重要+紧急",
           color: "var(--class-red)",
           secondaryColor: "var(--class-red-sec)",
         },
         {
-          name: "蓝色",
+          name: "重要+不紧急",
           color: "var(--class-blue)",
           secondaryColor: "var(--class-blue-sec)",
         },
         {
-          name: "绿色",
-          color: "var(--class-emerald)",
-          secondaryColor: "var(--class-emerald-sec)",
-        },
-        {
-          name: "橘色",
+          name: "不重要+紧急",
           color: "var(--class-orange)",
           secondaryColor: "var(--class-orange-sec)",
         },
+        {
+          name: "不重要+不紧急",
+          color: "var(--class-emerald)",
+          secondaryColor: "var(--class-emerald-sec)",
+        },
+        
       ],
       declaration: document.styleSheets[0].cssRules[0].style,
     };

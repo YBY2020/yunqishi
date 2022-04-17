@@ -9,7 +9,7 @@
     />
     <label for="check-setting" class="set" @click="$emit('toparent')">
       <svg-icon :icon-class="icon"></svg-icon>
-      <p>{{ setting == 'todo'?'设置定时':'设置重复' }}</p>
+      <p>{{ setting == 'todo'?'截止时间':'设置重复' }}</p>
     </label>
   </div>
 </template>

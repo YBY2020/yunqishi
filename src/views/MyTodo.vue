@@ -35,10 +35,10 @@
         <div class="clock-in-title">
           <div class="title-box" @click="checkTitle">
             <h2 class="title">
-              {{ !allClockInMode ? "今日打卡" : "全部打卡" }}
+              {{ !allClockInMode ? "习惯打卡" : "全部习惯" }}
             </h2>
             <h4 class="vice-title">
-              {{ !allClockInMode ? " /全部打卡" : "/今日打卡" }}
+              {{ !allClockInMode ? " /全部习惯" : "/习惯打卡" }}
             </h4>
           </div>
           <div

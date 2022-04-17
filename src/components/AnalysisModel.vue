@@ -21,8 +21,7 @@
       <span>勤奋</span><span>一般</span><span>懒惰</span>
     </div>
     <p class="text">
-      <span class="i">{{ levelPercentage + "%" }}</span
-      >的时间你在 {{ visibleText }} 中度过<br />加油，我们在山顶见
+      <span class="i">{{ levelPercentage + "%" }}</span>的时间你在<span class="i">{{ visibleText }}</span>中度过<br />加油，我们在山顶见
     </p>
   </div>
 </template>

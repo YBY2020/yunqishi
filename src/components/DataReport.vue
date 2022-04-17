@@ -4,7 +4,7 @@
       <div class="top">
         <span class="number">{{ li.data }}</span>
         <span class="unit">{{
-          index == 1 || index == 4 ? "%" : index == 5 ? "" : "项"
+          index == 1 || index == 4 || index == 2 || index == 5 ? "%" : "项"
         }}</span>
       </div>
       <p class="label">{{ li.text }}</p>
@@ -34,12 +34,19 @@ export default {
             ? parseInt((this.todoNumberCompleted[7] / this.todoNumber[7]) * 100)
             : 50,
         },
-        { text: "星标待办", data: !this.isSampleMode ? 0 : 3 },
+        {
+          text: "昨日习惯打卡率",
+          data: !this.isSampleMode
+            ? parseInt((this.todoNumberCompleted[7] / this.todoNumber[7]) * 100)
+            : 50,
+        },
         { text: "本周期完成待办", data: !this.isSampleMode ? this.todoTotalCompleted : 23 },
         { text: "本周期完成率", data: !this.isSampleMode
             ? parseInt((this.todoTotalCompleted / this.todoTotal) * 100)
             : 82, },
-        { text: "", data: null },
+        { text: "本周期习惯打卡率", data: !this.isSampleMode
+        ? parseInt((this.todoTotalCompleted / this.todoTotal) * 100)
+        : 82, },
       ];
     },
   },
