@@ -2,13 +2,8 @@
   <div id="app">
     <!-- 左侧导航栏 -->
     <div id="tab">
-      <!-- Logo -->
-      <!-- <div class="logo-box">
-        <img class="logo" src="@/assets/icons/logo.png" alt="Logo" />
-        <svg-icon icon-class="Logo" id="logo-text"></svg-icon>
-      </div> --> 
       <!-- 用户信息 -->
-      <!-- 这里改成点击更改用户名 或者 -->
+      <!-- 此处可在设置里更改 -->
       <div class="user" >
         <!-- 头像 -->
         <div class="profile">U</div>
@@ -26,10 +21,11 @@
         <svg-icon :icon-class="router.iconClass"></svg-icon>
         <span class="nav-name">{{ router.value }}</span>
       </router-link>
-      <!-- 待办分类 -->
+      <!-- 待办分类 这里也改成路由-->
       <div class="color">
         <div class="color-title">分类</div>
-        <div v-for="(list, index) in classLists" :key="index" class="color-li">
+        <!-- 如何获取v-for里的数据：需要什么传什么 -->
+        <div v-for="(list, index) in classLists" :key="index" class="color-li" @click="selectcontent(list.colorDesc)">
           <div class="list-class" :style="{ borderColor: list.secondaryColor }">
             <div
               class="base-list-class"
@@ -146,28 +142,40 @@ export default {
       /* 这里采用的四象限分类法是我个人觉得最实用的分类方法 */
       classLists: [
         {
+          name: "全部",
+          color: "var(--class-emerald)",
+          colorDesc:"全部",
+          secondaryColor: "var(--class-emerald-sec)",
+        },
+        {
           name: "重要+紧急",
           color: "var(--class-red)",
+          colorDesc:"红色",
           secondaryColor: "var(--class-red-sec)",
         },
         {
           name: "重要+不紧急",
           color: "var(--class-blue)",
+          colorDesc:"蓝色",
           secondaryColor: "var(--class-blue-sec)",
         },
         {
           name: "不重要+紧急",
           color: "var(--class-orange)",
+          colorDesc:"橘色",
           secondaryColor: "var(--class-orange-sec)",
         },
         {
           name: "不重要+不紧急",
+          colorDesc:"祖母绿",
           color: "var(--class-emerald)",
           secondaryColor: "var(--class-emerald-sec)",
         },
         
       ],
       declaration: document.styleSheets[0].cssRules[0].style,
+      //这里用来控制主页内容的显示
+      mycontent:''
     };
   },
   watch: {
@@ -188,6 +196,9 @@ export default {
       this.declaration.setProperty("--Vice-Theme", this.themeColors[theme][11]);
       this.$store.commit("changeTheme", theme);
     },
+    selectcontent(val){
+      console.log(val)
+    }
   },
   mounted() {
     this.$store.state.classLists = this.classLists;

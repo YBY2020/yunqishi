@@ -16,7 +16,7 @@
           <!-- 打勾选框 -->
           <check-box
             :class="{ checked: list.isComplete == true }"
-            @ischecked="list.isComplete = !list.isComplete"
+            @ischecked="mycheck(list)"
           ></check-box>
           <!-- 主内容 -->
           <div class="todo-main">
@@ -34,6 +34,27 @@
             </div>
           </div>
         </div>
+        <!-- 提醒打分 -->
+        <el-dialog
+          title="提示"
+          :visible.sync="dialogVisible"
+          width="30%"
+          :modal='false'
+          :before-close="handleClose">
+          <span>{{myspan}}</span>
+          <span slot="footer" class="dialog-footer">
+            <el-button @click="dialogVisible = false">取 消</el-button>
+            <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+          </span>
+        </el-dialog>
+        <!-- 中间打分 -->
+        <el-rate
+          v-model="value"
+          :colors="mycolor"
+          class="myrate"
+          @change="ratechange"
+          >
+        </el-rate>
         <!-- 右侧按钮 -->
         <div class="todo-right" v-if="list.isComplete == false">
           <div @click="editItem('todo', list)">
@@ -71,6 +92,15 @@ import CheckBox from "../components/TodoContent/CheckBox.vue";
 
 export default {
   name: "TodoContent",
+  data() {
+    return {
+      dialogVisible: false,
+      value: null,
+      myisComplete:false,
+      mycolor: ['#99A9BF', '#F7BA2A', '#FF9900'],  // 等同于 { 2: '#99A9BF', 4: { value: '#F7BA2A', excluded: true }, 5: '#FF9900' }
+      myspans : ['请先给自己的完成情况打分哟！','完美！','看起来有点小遗憾呢，继续加油！']
+    }
+  },
   components: {
     CheckBox,
   },
@@ -102,6 +132,40 @@ export default {
         list,
       });
     },
+    ratechange(){
+      console.log(this.value)
+    },
+    //打分提醒
+    handleClose(done) {
+        this.$confirm('确认关闭？')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+    },
+    //完成
+    mycheck(list){
+      console.log(this.value)
+      this.myisComplete=!this.myisComplete
+      if(this.myisComplete){
+        if(this.value>3){
+          this.dialogVisible = true
+          this.myspan=this.myspans[1]
+          list.isComplete = !list.isComplete
+        }
+        else if(this.value<3&&this.value>0){
+          this.dialogVisible = true
+          this.myspan=this.myspans[2]
+          list.isComplete = !list.isComplete
+        }
+        else{
+          this.dialogVisible = true
+          this.myspan=this.myspans[0]
+          this.myisComplete=!this.myisComplete
+        }
+      }
+    }
+
   },
 };
 </script>
@@ -197,6 +261,11 @@ export default {
   font-size: 0.75rem;
   /* line-height: 1rem; */
   font-weight: 400;
+}
+.myrate{
+  position: absolute;
+  right: 250px;
+  z-index: 999;
 }
 /* 右侧图标的盒子 */
 .todo-right {

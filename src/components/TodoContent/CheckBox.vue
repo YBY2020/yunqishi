@@ -1,16 +1,22 @@
 <template>
+<!-- 这里是打勾的那个按钮 在此处添加单个待办完成鼓励语-->
   <div
     class="is-complete"
-    @click="$emit('ischecked')"
+    @click="myclick"
   >
     <div class="bg"></div>
-    <svg-icon icon-class="icon-check"></svg-icon>
+    <svg-icon icon-class="icon-check" ></svg-icon>
   </div>
 </template>
 
 <script>
 export default {
   name: "CheckBox",
+  methods: {
+    myclick(){
+      this.$emit('ischecked')
+    }
+  },
 }
 </script>
 
